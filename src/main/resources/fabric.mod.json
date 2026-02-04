@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "hi",
+  "version": "1.0.0",
+  "name": "Wemmbu's rods",
+  "description": "stairs (useless) orbital (not perfected) railgun & stabshot (perfected)",
+  "authors": [
+    "Me"
+  ],
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.example.liquidify.orbital.Orbital"
+    ]
+  }
+}
