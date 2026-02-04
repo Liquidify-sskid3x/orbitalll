@@ -116,47 +116,27 @@ public class Orbital implements ModInitializer {
         });
     }
     //orbital strike cannon setup
-    private void spawnOrbital(Level level, Player player) {
-        double px = player.getX();
-        double py = player.getY() + 10;
-        double pz = player.getZ();
-        double spacing = 2.5;
-        double radius = 50;
-        double innerRadius = 45;
-        int circleCount = 125;
-        for (int i = 0; i < circleCount; i++) {
-            double angle = (2 * Math.PI / circleCount) * i;
+private void spawnOrbital(Level level, Player player) {
+    double px = player.getX();
+    double py = player.getY() + 10;
+    double pz = player.getZ();
+    spawn(level, px, py, pz, player);
+    int rings = 10;
+    double maxRadius = 67.0;
+    double radiusStep = maxRadius / rings;
+    double spacing = 2.5;
+    for (int r = 1; r <= rings; r++) {
+        double radius = r * radiusStep;
+        double circumference = 2 * Math.PI * radius;
+        int count = Math.max(8, (int) Math.round(circumference / spacing));
+        for (int i = 0; i < count; i++) {
+            double angle = (2 * Math.PI / count) * i;
             double x = px + Math.cos(angle) * radius;
             double z = pz + Math.sin(angle) * radius;
             spawn(level, x, py, z, player);
         }
-        int steps = (int)(innerRadius / spacing);
-        for (int i = 1; i <= steps; i++) {
-            double d = i * spacing;
-            spawn(level, px, py, pz + d, player);
-            spawn(level, px, py, pz - d, player);
-            spawn(level, px + d, py, pz, player);
-            spawn(level, px - d, py, pz, player);
-        }
-        for (int i = 1; i <= steps; i++) {
-            double d = i * spacing;
-            spawn(level, px + d, py, pz + d, player);
-            spawn(level, px - d, py, pz + d, player);
-            spawn(level, px + d, py, pz - d, player);
-            spawn(level, px - d, py, pz - d, player);
-        }
-        for (int i = 1; i <= steps; i++) {
-            double d = i * spacing;
-            spawn(level, px + d, py, pz + d * 0.5, player);
-            spawn(level, px + d * 0.5, py, pz + d, player);
-            spawn(level, px - d, py, pz + d * 0.5, player);
-            spawn(level, px - d * 0.5, py, pz + d, player);
-            spawn(level, px + d, py, pz - d * 0.5, player);
-            spawn(level, px + d * 0.5, py, pz - d, player);
-            spawn(level, px - d, py, pz - d * 0.5, player);
-            spawn(level, px - d * 0.5, py, pz - d, player);
-        }
     }
+}
     //stabshot tnt setup
     private void spawnStabShot(Level level, Player player) {
         double yaw = Math.toRadians(player.getYRot());
@@ -220,3 +200,4 @@ public class Orbital implements ModInitializer {
     }
 
 }
+
