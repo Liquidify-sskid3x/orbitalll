@@ -143,6 +143,9 @@ public class Orbital implements ModInitializer {
                             )
             );
         });
+        //YOU stop scrolling!!!
+        //this is ugly code so dont think im a good modder k?
+        //wushwishwswsw
         UseItemCallback.EVENT.register((player, level, hand) -> {
             ItemStack stack = player.getItemInHand(hand);
             Component name = stack.get(DataComponents.CUSTOM_NAME);
@@ -418,3 +421,4 @@ public class Orbital implements ModInitializer {
         return list;
     }
 }
+
